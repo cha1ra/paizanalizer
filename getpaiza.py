@@ -2,21 +2,54 @@ import requests
 from module import user
 from bs4 import BeautifulSoup
 
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
+
+options = Options()
+# options.add_argument('--headless')
+driver = webdriver.Chrome(chrome_options=options)
+driver.implicitly_wait(3)
+
+driver.get('https://paiza.jp')
+
+
 
 
 login_info = {
+    'utf8': '✓',
     'user[email]': user.info('email'),
-    'user[password]': user.info('password')
+    'user[password]': user.info('password'),
+    'back': 'en_try/mypage/results'
 }
 
-login_url = 'https://paiza.jp/user_sessions/new_cbox'
+login_url = 'https://paiza.jp'
 
-session = requests.Session()
-res = session.post(login_url, data=login_info)
+# session = requests.Session()
+# res = session.get(login_url)
+# soup = BeautifulSoup(res.text, 'html.parser')
+# auth_token = soup.find(attrs={'name': 'authenticity_token'}).get('value')
+# # TODO: Selectで書くとどうなる？
 
-print('status_code: ', res.status_code)
+# login_info['authenticity_token'] = auth_token
+# print('status_code: ', res.status_code)
 
-soup = BeautifulSoup(res.text, 'html.parser')\
+# login_url = 'https://paiza.jp/user_sessions'
+
+# res = session.post(login_url, data=login_info)
+
+# print('status_code: ', res.status_code)
+# # print(res.text)
+
+# login_url = 'https://paiza.jp/career/mypage/results'
+
+# res = session.get(login_url)
+# soup = BeautifulSoup(res.text, 'html.parser')
+
+# print('status_code: ', res.status_code)
+# print(soup.select('#tab-results > div.mb30'))
+
+
 
 
 
