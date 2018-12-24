@@ -10,7 +10,7 @@ from selenium.webdriver.chrome.options import Options
 
 # headless Chrome ブラウザの準備
 options = Options()
-# options.add_argument('--headless')
+options.add_argument('--headless')
 browser = webdriver.Chrome(chrome_options=options)
 browser.implicitly_wait(3)
 
